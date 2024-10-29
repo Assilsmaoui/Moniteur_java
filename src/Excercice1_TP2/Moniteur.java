@@ -18,6 +18,7 @@ public class Moniteur {
 			//COND=>Attente
 			while(amount>nb_cell_dispo) {
 				System.out.println("nbre de case n'est pas diponiblie");
+				c1.signal();
 				c1.await();
 				System.out.println("processus quit fil d'attente");
 			}
@@ -25,6 +26,11 @@ public class Moniteur {
 			nb_cell_dispo=nb_cell_dispo-amount;
 		}catch(Exception e) {}
 		finally {l.unlock();}
+	}
+	public void acces_memoire(int amount) {
+
+		System.out.println("je suis dans la mémoire");
+
 	}
 	public void Release(int amount) {
 		l.lock();
